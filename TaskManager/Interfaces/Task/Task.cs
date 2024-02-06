@@ -6,7 +6,7 @@ using TaskManager.Interfaces;
 
 namespace TaskManager.Interfaces.Task
 {
-    public class Task : TaskInterface
+    public class Task : ITask
     {
         public string id { get; set; }
         public string Subject { get; set; }

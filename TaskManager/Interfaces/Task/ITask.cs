@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TaskManager.Interfaces
 {
-    public interface TaskInterface
+    public interface ITask
     {
         string id { get; set; }
         string Subject { get; set; }

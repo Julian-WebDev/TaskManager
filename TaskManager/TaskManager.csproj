@@ -136,7 +136,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\Task\Task.cs" />
-    <Compile Include="Interfaces\Task\TaskInterface.cs" />
+    <Compile Include="Interfaces\Task\ITask.cs" />
+    <Compile Include="Interfaces\User\IUser.cs" />
+    <Compile Include="Interfaces\User\User.cs" />
     <Compile Include="Models\DataBase.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -91,7 +91,6 @@ function incompleted(id) {
                     text: 'Task status updated'
                 });
                 $('#completed_tasks').DataTable().ajax.reload();
-                document.getElementById('task_form').reset();
             }
             else if (response == 2) {
                 document.getElementById('staticBackdrop').setAttribute('aria-hidden', 'true');;

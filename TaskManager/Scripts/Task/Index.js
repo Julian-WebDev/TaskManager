@@ -88,7 +88,6 @@ $('#btn_send_form').click(function (e) {
                     text: 'Task succesfully added',
                 });
                 $('#task_table').DataTable().ajax.reload();
-                document.getElementById('task_form').reset();
             }
             console.log(response)
         },

@@ -26,8 +26,6 @@
                     title: 'D:',
                     text: 'The task information could not be updated',
                 });
-                $('#task_table').DataTable().ajax.reload();
-                document.getElementById('task_form').reset();
             }
             console.log(response)
         },

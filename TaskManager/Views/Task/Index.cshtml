@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Task Page";
+}
+<style>
+    table tr td {
+        border: none;
+    }
+</style>
+<div class="card m-4">
+    <div class="card-header input-group" style="background: #2D3436;">
+        <div class="me-2 mt-1">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Create a new Task
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        @* Form to add the information of the new task *@
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Add a new task</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="task_form">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Subject" id="subject" name="subject">
+                            </div>
+                            <div class="mb-3">
+                                <input type="date" class="form-control" id="date" name="date">
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Task name" id="name" name="name">
+                            </div>
+                            <div class="mb-3">
+                                <textarea type="text" class="form-control" placeholder="Task description" id="description" name="description"></textarea>
+                            </div>
+                            <div>
+                                <button id="btn_send_form" type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @* Section to render the list of tasks *@
+        <div class="table-responsive">
+            <table id="task_table" class="table table-hover mt-5">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Subject</td>
+                        <td>Deadline</td>
+                        <td>Task</td>
+                        <td style="max-width: 500px;">Description</td>
+                        <td>Actions</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+@* References to use jQuery DataTable *@
+<link href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+@* Script tag to get the controller URL *@
+<script>
+    const deleteURL = '@Url.Action("DeleteTask", "Task")';
+    const sendURL = '@Url.Action("CreateTask", "Task")';
+    const getURL = '@Url.Action("GetTask", "Task")';
+    const editURL = '@Url.Action("EditTask", "Task")';
+    const completeURL = '@Url.Action("CompleteTask", "Task")';
+</script>
+
+@* Reference to the script of the page *@
+@Scripts.Render("~/Scripts/Task/Index.js")

@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TaskManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="T_TASKS">
+          <Key>
+            <PropertyRef Name="TASK_ID" />
+          </Key>
+          <Property Name="TASK_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="TASK_SUBJECT" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TASK_DEADLINE" Type="varchar" MaxLength="50" />
+          <Property Name="TASK_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="COMPLETED" Type="int" Nullable="false" />
+          <Property Name="TASK_DESCRIPTION" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="T_USERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_T_TASKS_T_USERS">
+          <End Role="T_USERS" Type="Self.T_USERS" Multiplicity="1" />
+          <End Role="T_TASKS" Type="Self.T_TASKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_TASKS">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_USERS_T_USERS">
+          <End Role="T_USERS" Type="Self.T_USERS" Multiplicity="1" />
+          <End Role="T_USERS1" Type="Self.T_USERS" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="T_USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_USERS1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TaskManagerModelStoreContainer">
+          <EntitySet Name="T_TASKS" EntityType="Self.T_TASKS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_USERS" EntityType="Self.T_USERS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_T_TASKS_T_USERS" Association="Self.FK_T_TASKS_T_USERS">
+            <End Role="T_USERS" EntitySet="T_USERS" />
+            <End Role="T_TASKS" EntitySet="T_TASKS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_USERS_T_USERS" Association="Self.FK_T_USERS_T_USERS">
+            <End Role="T_USERS" EntitySet="T_USERS" />
+            <End Role="T_USERS1" EntitySet="T_USERS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TaskManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TaskManagerEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="T_TASKS" EntityType="TaskManagerModel.T_TASKS" />
+          <EntitySet Name="T_USERS" EntityType="TaskManagerModel.T_USERS" />
+          <AssociationSet Name="FK_T_TASKS_T_USERS" Association="TaskManagerModel.FK_T_TASKS_T_USERS">
+            <End Role="T_USERS" EntitySet="T_USERS" />
+            <End Role="T_TASKS" EntitySet="T_TASKS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_USERS_T_USERS" Association="TaskManagerModel.FK_T_USERS_T_USERS">
+            <End Role="T_USERS" EntitySet="T_USERS" />
+            <End Role="T_USERS1" EntitySet="T_USERS" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="T_TASKS">
+          <Key>
+            <PropertyRef Name="TASK_ID" />
+          </Key>
+          <Property Name="TASK_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="TASK_SUBJECT" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TASK_DEADLINE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TASK_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COMPLETED" Type="Int32" Nullable="false" />
+          <Property Name="TASK_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_USERS" Relationship="TaskManagerModel.FK_T_TASKS_T_USERS" FromRole="T_TASKS" ToRole="T_USERS" />
+        </EntityType>
+        <EntityType Name="T_USERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_TASKS" Relationship="TaskManagerModel.FK_T_TASKS_T_USERS" FromRole="T_USERS" ToRole="T_TASKS" />
+          <NavigationProperty Name="T_USERS1" Relationship="TaskManagerModel.FK_T_USERS_T_USERS" FromRole="T_USERS" ToRole="T_USERS1" />
+          <NavigationProperty Name="T_USERS2" Relationship="TaskManagerModel.FK_T_USERS_T_USERS" FromRole="T_USERS1" ToRole="T_USERS" />
+        </EntityType>
+        <Association Name="FK_T_TASKS_T_USERS">
+          <End Type="TaskManagerModel.T_USERS" Role="T_USERS" Multiplicity="1" />
+          <End Type="TaskManagerModel.T_TASKS" Role="T_TASKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_TASKS">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_USERS_T_USERS">
+          <End Type="TaskManagerModel.T_USERS" Role="T_USERS" Multiplicity="1" />
+          <End Type="TaskManagerModel.T_USERS" Role="T_USERS1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="T_USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_USERS1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TaskManagerModelStoreContainer" CdmEntityContainer="TaskManagerEntities1">
+          <EntitySetMapping Name="T_TASKS">
+            <EntityTypeMapping TypeName="TaskManagerModel.T_TASKS">
+              <MappingFragment StoreEntitySet="T_TASKS">
+                <ScalarProperty Name="TASK_DESCRIPTION" ColumnName="TASK_DESCRIPTION" />
+                <ScalarProperty Name="COMPLETED" ColumnName="COMPLETED" />
+                <ScalarProperty Name="TASK_NAME" ColumnName="TASK_NAME" />
+                <ScalarProperty Name="TASK_DEADLINE" ColumnName="TASK_DEADLINE" />
+                <ScalarProperty Name="TASK_SUBJECT" ColumnName="TASK_SUBJECT" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="TASK_ID" ColumnName="TASK_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_USERS">
+            <EntityTypeMapping TypeName="TaskManagerModel.T_USERS">
+              <MappingFragment StoreEntitySet="T_USERS">
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

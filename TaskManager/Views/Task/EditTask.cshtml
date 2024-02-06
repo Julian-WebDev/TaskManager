@@ -1,0 +1,40 @@
+﻿@model List<TaskManager.Models.TaskUpdate.TaskUpdate>
+@{
+    ViewBag.Title = "EditTask";
+}
+<div class="card m-4">
+    <div class="card-header" style="background: #2D3436;">
+        <h1 class="text-white">Update your task</h1>
+    </div>
+    <div class="card-body">
+        <form id="update_form" class="col-5">
+            <div class="m-1">
+                @foreach (var ob_model in Model)
+                {
+                    <div class="mb-3 row">
+                        <input type="text" class="form-control col-5" placeholder="Subject" id="id" name="id" value="@ob_model.Id" />
+                    </div>
+                    <div class="mb-3 row">
+                        <input type="text" class="form-control col-5" placeholder="Subject" id="subject" name="subject" value="@ob_model.Subject">
+                    </div>
+                    <div class="mb-3 row">
+                        <input type="date" class="form-control col-5" id="date" name="date" value="@ob_model.Date">
+                    </div>
+                    <div class="mb-3 row">
+                        <input type="text" class="form-control col-5" placeholder="Task name" id="name" name="name" value="@ob_model.Name">
+                    </div>
+                    <div class="mb-3 row">
+                        <textarea type="text" class="form-control col-5" placeholder="Task description" id="description" name="description">@ob_model.Description</textarea>
+                    </div>
+                    <div class="row">
+                        <button id="btn_send_form" type="submit" class="btn btn-primary col-auto">Save</button>
+                    </div>
+                }
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    const updateURL = '@Url.Action("updateTasks", "Task")'
+</script>
+@Scripts.Render("~/Scripts/Task/UpdateTask.js")

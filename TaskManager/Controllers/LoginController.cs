@@ -22,6 +22,8 @@ namespace TaskManager.Controllers
             {
                 //In this block of code Im using LinkQ, that is a language
                 //similar to SQL Server querys
+
+                //Using LinkQ I compare the credentials 
                 using(TaskManagerEntities1 dataBase = new TaskManagerEntities1()) 
                 {
                     var list = from table in dataBase.T_USERS

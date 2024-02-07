@@ -13,4 +13,20 @@
             }
         })
     })
-})
+});
+
+function displayUserForm() {
+    var loginForm = document.getElementById('login-form');
+    loginForm.classList.add('d-none');
+
+    var userForm = document.getElementById('user-form');
+    userForm.classList.remove('d-none');
+}
+
+function displayLoginForm() {
+    var loginForm = document.getElementById('login-form');
+    loginForm.classList.remove('d-none');
+
+    var userForm = document.getElementById('user-form');
+    userForm.classList.add('d-none');
+}

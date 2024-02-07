@@ -25,22 +25,45 @@
 <body>
     <div class="container min-vh-100 d-flex justify-content-center align-items-center">
         <div style="background: #2D3436;" class="rounded-3 text-white">
+            @* Create user form *@
             <form class="m-5" id="login-form">
                 <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <input class="form-control text-center" placeholder="user@mail.com" type="text" name="email" value="hidalgoleonjulian@gmail.com"/>
+                    <input class="form-control text-center" placeholder="user@mail.com" type="text" name="email" value="hidalgoleonjulian@gmail.com" />
                 </div>
                 <div class="mb-3">
                     <label class="col-form-label">Password</label>
-                    <input class="form-control text-center" placeholder="********" type="password" name="password" value="cisco123"/>
+                    <input class="form-control text-center" placeholder="********" type="password" name="password" value="cisco123" />
                 </div>
                 <div class="mb-3">
-                    <a href="#" class="text-white">Forgot password?</a>
+                    <a onclick="displayUserForm()" class="text-white">Sign up</a>
                 </div>
                 <div>
                     <input type="submit" class="btn btn-primary" value="Login" />
                 </div>
             </form>
+
+            @* Create user form *@
+        <form class="m-5 d-none" id="user-form">
+            <div class="mb-3">
+                <label class="col-form-label">Name</label>
+                <input class="form-control text-center" placeholder="Name" type="password" name="newName" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input class="form-control text-center" placeholder="user@mail.com" type="text" name="newEmai" />
+            </div>
+            <div class="mb-3">
+                <label class="col-form-label">Password</label>
+                <input class="form-control text-center" placeholder="********" type="password" name="newPassword" />
+            </div>
+            <div class="mb-3">
+                <a onclick="displayLoginForm()" class="text-white">Sign In</a>
+            </div>
+            <div>
+                <input type="submit" class="btn btn-primary" value="Create user" />
+            </div>
+        </form>
         </div>
     </div>
     @Scripts.Render("~/bundles/jquery")

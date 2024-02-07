@@ -15,6 +15,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Poppins:wght@300&display=swap" rel="stylesheet">
+    @* Sweet alert reference *@
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -47,11 +49,11 @@
         <form class="m-5 d-none" id="user-form">
             <div class="mb-3">
                 <label class="col-form-label">Name</label>
-                <input class="form-control text-center" placeholder="Name" type="password" name="newName" />
+                <input class="form-control text-center" placeholder="Name" type="text" name="newName" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Email</label>
-                <input class="form-control text-center" placeholder="user@mail.com" type="text" name="newEmai" />
+                <input class="form-control text-center" placeholder="user@mail.com" type="text" name="newEmail" />
             </div>
             <div class="mb-3">
                 <label class="col-form-label">Password</label>
@@ -71,6 +73,7 @@
 
     <script>
         let path = '@Url.Content("~/Login/Login")';
+        let controllerURL = '@Url.Action("CreateUser", "Login")';
         let URL = '@Url.Content("~/")';
     </script>
     @Scripts.Render("~/Scripts/Login/Index.js")

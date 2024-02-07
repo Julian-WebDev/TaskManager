@@ -83,5 +83,19 @@ namespace TaskManager.Data
             command.ExecuteNonQuery();
             connection.Close();
         }
+
+        public void createUser(string name, string email, string password)
+        {
+            SqlCommand command = new SqlCommand("ADD_USER", connection);
+
+            connection.Open();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.Parameters.Add("@NAME", System.Data.SqlDbType.NChar).Value = name;
+            command.Parameters.Add("@EMAIL", System.Data.SqlDbType.NChar).Value = email;
+            command.Parameters.Add("@PASSWORD", System.Data.SqlDbType.NChar).Value = password;
+
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 }

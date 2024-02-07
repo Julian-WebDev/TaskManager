@@ -16,12 +16,13 @@ namespace TaskManager.Data
     {
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["connection"].ConnectionString);
 
-        public void insertTask(string subject, string date, string name, string description)
+        public void insertTask(int userID,string subject, string date, string name, string description)
         {
             SqlCommand command = new SqlCommand("INSERT_TASK", connection);
 
             connection.Open();
             command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.Parameters.Add("@ID", System.Data.SqlDbType.Int).Value = userID;
             command.Parameters.Add("@SUBJECT", System.Data.SqlDbType.NChar).Value = subject;
             command.Parameters.Add("@DATE", System.Data.SqlDbType.NChar).Value = date;
             command.Parameters.Add("@NAME", System.Data.SqlDbType.NChar).Value = name;

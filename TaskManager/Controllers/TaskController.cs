@@ -11,6 +11,7 @@ using TaskManager.Interfaces;
 using TaskManager.Interfaces.Task;
 using TaskManager.Data;
 using TaskManager.Models.TaskUpdate;
+using TaskManager.Interfaces.User;
 
 namespace TaskManager.Controllers
 {
@@ -76,6 +77,8 @@ namespace TaskManager.Controllers
         [HttpPost]
         public ActionResult CreateTask(FormCollection collection)
         {
+            var oUser = (T_USERS)Session["User"];
+
             //Using this object I can manage the items without creating inncesary space in the memory
             Task item = new Task();
 
@@ -91,7 +94,7 @@ namespace TaskManager.Controllers
             else
             {
                 C_Task task = new C_Task();
-                task.insertTask(item.Subject, item.Date, item.Name, item.Description);
+                task.insertTask(oUser.ID, item.Subject, item.Date, item.Name, item.Description);
                 return Content("2");
             }
         }
@@ -100,12 +103,15 @@ namespace TaskManager.Controllers
         {
             using(TaskManagerEntities1 dataBase = new TaskManagerEntities1())
             {
+                var oUser = (T_USERS)Session["User"];
+                
+
                 //To avoid errors, in the select I have to choose the spaces that I need
                 //because if I select all the fields when I'm calling
                 //3 spaces it will throw an error
                 List<LoadTasks> list = null;
                 list = (from data in dataBase.T_TASKS
-                        where data.COMPLETED == 1
+                        where data.COMPLETED == 1 && data.USER_ID == oUser.ID
                         orderby data.TASK_ID
                         select new LoadTasks
                         {
@@ -123,11 +129,13 @@ namespace TaskManager.Controllers
 
         public ActionResult GetCompletedTasks()
         {
+            var oUser = (T_USERS)Session["User"];
+
             using (TaskManagerEntities1 dataBase = new TaskManagerEntities1())
             {
                 List<LoadTasks> list = null;
                 list = (from data in dataBase.T_TASKS
-                        where data.COMPLETED == 2
+                        where data.COMPLETED == 2 && data.USER_ID == oUser.ID
                         orderby data.TASK_ID
                         select new LoadTasks
                         {

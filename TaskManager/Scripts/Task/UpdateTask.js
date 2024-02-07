@@ -2,9 +2,13 @@
     e.preventDefault();
     const form = document.getElementById('update_form');
     const fd = new FormData(form);
+
+    fd.append('id', taskID);
+
     console.log(fd);
 
     const data = Object.fromEntries(fd);
+
     console.log(data);
 
     $.ajax({

@@ -74,3 +74,10 @@ function displayLoginForm() {
     userForm.classList.add('d-none');
 }
 
+function forgotPassword() {
+    var loginForm = document.getElementById('login-form');
+    loginForm.classList.add('d-none');
+
+    var forgotForm = document.getElementById("password-form");
+    forgotForm.classList.remove('d-none');
+}
